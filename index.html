@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Naslov strani -->
+    <title>Kalkulator – Elektrotehnika & Mehanika</title>
+
+    <!-- CSS – skrbi za izgled strani -->
+    <style>
+        /* Osnovni izgled celotne strani */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Glava strani */
+        header {
+            background: #1e293b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Glavni del strani */
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Kartica za posamezen kalkulator */
+        .card {
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #1e293b;
+        }
+
+        /* Oznake in vnosna polja */
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        /* Gumbi */
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Izpis rezultata */
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* Noga strani */
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<!-- GLAVA STRANI -->
+<header>
+    <h1>Kalkulator formul</h1>
+    <p>Elektrotehnika & Mehanika – matura</p>
+</header>
+
+<main>
+
+    <!-- ELEKTROTEHNIKA: OHMOV ZAKON -->
+    <div class="card">
+        <h2>⚡ Ohmov zakon</h2>
+
+        <!-- Prikaz formule -->
+        <p>Formula: <strong>U = R · I</strong></p>
+
+        <!-- Vnos upornosti -->
+        <label>Upornost R (Ω):</label>
+        <input type="number" id="r">
+
+        <!-- Vnos toka -->
+        <label>Tok I (A):</label>
+        <input type="number" id="i">
+
+        <!-- Gumb sproži JavaScript funkcijo -->
+        <button onclick="izracunajNapetost()">Izračunaj napetost</button>
+
+        <!-- Rezultat izračuna -->
+        <div class="result" id="rezultatU"></div>
+    </div>
+
+    <!-- MEHANIKA: SILA -->
+    <div class="card">
+        <h2>⚙️ Sila</h2>
+        <p>Formula: <strong>F = m · a</strong></p>
+
+        <!-- Vnos mase -->
+        <label>Masa m (kg):</label>
+        <input type="number" id="m">
+
+        <!-- Vnos pospeška -->
+        <label>Pospešek a (m/s²):</label>
+        <input type="number" id="a">
+
+        <!-- Gumb sproži JavaScript funkcijo -->
+        <button onclick="izracunajSilo()">Izračunaj silo</button>
+
+        <!-- Rezultat -->
+        <div class="result" id="rezultatF"></div>
+    </div>
+
+</main>
+
+<!-- NOGA STRANI -->
+<footer>
+    © 2026 – Projekt za 4. predmet mature
+</footer>
+
+<!-- JavaScript – skrbi za izračune -->
+<script>
+
+    // Funkcija izračuna napetost po Ohmovem zakonu
+    function izracunajNapetost() {
+
+        // Preberemo vrednosti iz vnosnih polj
+        let R = document.getElementById("r").value;
+        let I = document.getElementById("i").value;
+
+        // Preverimo, ali sta vneseni obe vrednosti
+        if (R === "" || I === "") {
+            document.getElementById("rezultatU").innerText =
+                "Vnesi vse podatke.";
+            return;
+        }
+
+        // Izračun napetosti
+        let U = R * I;
+
+        // Izpis rezultata
+        document.getElementById("rezultatU").innerText =
+            "Napetost U = " + U + " V";
+    }
+
+    // Funkcija izračuna silo po formuli F = m · a
+    function izracunajSilo() {
+
+        // Preberemo podatke
+        let m = document.getElementById("m").value;
+        let a = document.getElementById("a").value;
+
+        // Preverimo vnos
+        if (m === "" || a === "") {
+            document.getElementById("rezultatF").innerText =
+                "Vnesi vse podatke.";
+            return;
+        }
+
+        // Izračun sile
+        let F = m * a;
+
+        // Izpis rezultata
+        document.getElementById("rezultatF").innerText =
+            "Sila F = " + F + " N";
+    }
+
+</script>
+
+</body>
+</html>
